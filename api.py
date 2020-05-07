@@ -17,15 +17,10 @@ class App(Resource):
         smoker = request.args.get('smoker')
         symptoms = request.args.get('reported_symptoms')
         medical_history = request.args.get('medical_history')
-        #cough audio
-        #breath audio
-        #finger video
-        patient_location = request.args.get('location')
 
         response = {"age": age, "gender": gender,
          "smoker": smoker, "reported_symptoms": symptoms,
-         "medical_history": medical_history,
-         "location": patient_location }
+         "medical_history": medical_history}
 
         return make_response(jsonify(response), 200)
 

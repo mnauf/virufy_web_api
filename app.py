@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request, make_response
-import requests
-
+# from .text import *
 app = Flask(__name__)
 
 # /api/virufy -> all data will be posted here and we will return the response
@@ -12,16 +11,18 @@ def post():
     smoker = request.form.get('smoker')
     symptoms = request.form.getlist('reported_symptoms')
     medical_history = request.form.getlist('medical_history')
-    # cough audio = request.form.get('')
-    # breath audio = request.form.get('')
-    # finger video = request.form.get('')
-    patient_location = request.form.get('location')
 
     response = {"age": age, "gender": gender,
      "smoker": smoker, "reported_symptoms": symptoms,
-     "medical_history": medical_history,
-     "location": patient_location }
+     "medical_history": medical_history}
+
+
 
     return make_response(jsonify(response), 200)
+
+@app.route('/api/virufy', methods=['GET'])
+def get():
+    message = { 'message': 'This api just has endpoints for POST request' }
+    return make_response(jsonify(message), 404)
 
 app.run(port=5000, debug=True)
